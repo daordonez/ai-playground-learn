@@ -1,0 +1,64 @@
+name: CI and publish
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Validate content and frontend
+        working-directory: frontend
+        run: |
+          npm run validate-content
+          npm run lint
+          npm run build
+      - name: Install backend dependencies
+        run: python -m pip install -r backend/requirements.txt
+      - name: Test backend
+        run: python -m pytest backend/tests
+      - name: Build container
+        run: docker build --tag ai-playground-learn:test .
+
+  publish:
+    if: github.event_name == 'push'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/daordonez/ai-playground-learn:sha-${{ github.sha }}
+      - name: Trigger Dokploy deployment
+        if: ${{ secrets.DOKPLOY_DEPLOY_WEBHOOK != '' }}
+        env:
+          DOKPLOY_DEPLOY_WEBHOOK: ${{ secrets.DOKPLOY_DEPLOY_WEBHOOK }}
+        run: curl --fail --show-error --silent --request POST "$DOKPLOY_DEPLOY_WEBHOOK"

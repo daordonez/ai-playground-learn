@@ -1,0 +1,13 @@
+services:
+  ai-playground-learn:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - learning-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  learning-data:

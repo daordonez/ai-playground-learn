@@ -39,8 +39,9 @@ Implementa el entregable, arranca frontend y backend, y anota la evidencia: capt
 - El backend conserva la responsabilidad de secretos, políticas y proveedor.
 - Puedes describir el siguiente cambio sin romper el contrato actual.
 
-## Error frecuente
-Saltar al SDK de Azure desde React o mezclar el entregable actual con mejoras no necesarias para validar el flujo.
+## Errores frecuentes
+- Publicar una imagen mutable como `latest` sin conservar el digest o la etiqueta SHA.
+- Desplegar antes de ejecutar validación de contenido, pruebas y compilación en la pull request.
 
 ## Siguiente paso
 Confirma el entregable con un commit y usa su resultado como punto de partida del módulo siguiente.

@@ -25,7 +25,8 @@ Apply the module decision to the playground and keep the implementation small, e
 Write the decision you would make for this module and the evidence that proves it works.
 ## Check
 You can explain the boundary, its contract, and the failure it prevents.
-## Common mistake
-Changing several responsibilities at once and losing a clear source of truth.
+## Common mistakes
+- Working directly on `main` and losing an isolated review of the change.
+- Combining structure, behavior, and unrelated fixes in one hard-to-review commit.
 ## Next step
 Use this decision as the input to the next module.

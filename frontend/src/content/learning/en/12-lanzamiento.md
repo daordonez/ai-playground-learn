@@ -25,7 +25,8 @@ Apply the module decision to the playground and keep the implementation small, e
 Write the decision you would make for this module and the evidence that proves it works.
 ## Check
 You can explain the boundary, its contract, and the failure it prevents.
-## Common mistake
-Changing several responsibilities at once and losing a clear source of truth.
+## Common mistakes
+- Declaring the release successful without testing a complete conversation from the browser.
+- Failing to document rollback to a known SHA image before making a production change.
 ## Next step
 Use this decision as the input to the next module.

@@ -25,7 +25,8 @@ Apply the module decision to the playground and keep the implementation small, e
 Write the decision you would make for this module and the evidence that proves it works.
 ## Check
 You can explain the boundary, its contract, and the failure it prevents.
-## Common mistake
-Changing several responsibilities at once and losing a clear source of truth.
+## Common mistakes
+- Publishing a mutable `latest` image without keeping its digest or SHA tag.
+- Deploying before content validation, tests, and the build run on the pull request.
 ## Next step
 Use this decision as the input to the next module.

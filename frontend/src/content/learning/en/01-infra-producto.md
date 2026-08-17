@@ -25,7 +25,8 @@ Apply the module decision to the playground and keep the implementation small, e
 Write the decision you would make for this module and the evidence that proves it works.
 ## Check
 You can explain the boundary, its contract, and the failure it prevents.
-## Common mistake
-Changing several responsibilities at once and losing a clear source of truth.
+## Common mistakes
+- Turning the MVP into an unprioritized feature list instead of validating the minimum chat flow.
+- Letting React call Foundry directly and exposing backend decisions or secrets.
 ## Next step
 Use this decision as the input to the next module.

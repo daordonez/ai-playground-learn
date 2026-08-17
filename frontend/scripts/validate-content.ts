@@ -4,8 +4,8 @@ import { parse } from "yaml";
 
 const required = ["id", "module", "order", "title", "duration", "prerequisites", "objectives", "translation_status", "visibility", "resources"];
 const sections = {
-  es: ["## Conceptos clave", "## Paso a paso", "## Ejemplo práctico", "## Ejercicio", "## Verificación", "## Error frecuente", "## Siguiente paso"],
-  en: ["## Key concepts", "## Step by step", "## Practical example", "## Exercise", "## Check", "## Common mistake", "## Next step"],
+  es: ["## Conceptos clave", "## Paso a paso", "## Ejemplo práctico", "## Ejercicio", "## Verificación", "## Errores frecuentes", "## Siguiente paso"],
+  en: ["## Key concepts", "## Step by step", "## Practical example", "## Exercise", "## Check", "## Common mistakes", "## Next step"],
 };
 const root = new URL("../src/content/", import.meta.url).pathname;
 
@@ -30,6 +30,10 @@ async function validateLesson(file: string, locale: "es" | "en"): Promise<string
     if (!String(resource.url).startsWith("https://")) throw new Error(`${file}: resource URL must use HTTPS`);
   }
   for (const section of sections[locale]) if (!frontMatter[2].includes(section)) throw new Error(`${file}: missing ${section}`);
+  const mistakesSection = locale === "es" ? "## Errores frecuentes" : "## Common mistakes";
+  const nextSection = locale === "es" ? "## Siguiente paso" : "## Next step";
+  const mistakes = frontMatter[2].split(mistakesSection)[1]?.split(nextSection)[0] ?? "";
+  if ((mistakes.match(/^\s*[-*] /gm) ?? []).length < 2) throw new Error(`${file}: requires at least two common mistakes`);
   return data.id;
 }
 

@@ -25,7 +25,8 @@ Apply the module decision to the playground and keep the implementation small, e
 Write the decision you would make for this module and the evidence that proves it works.
 ## Check
 You can explain the boundary, its contract, and the failure it prevents.
-## Common mistake
-Changing several responsibilities at once and losing a clear source of truth.
+## Common mistakes
+- Treating an HTTP request as successful without checking `response.ok`.
+- Clearing the draft or leaving the button disabled when the API returns a recoverable error.
 ## Next step
 Use this decision as the input to the next module.

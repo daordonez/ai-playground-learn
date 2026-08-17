@@ -1,28 +1,25 @@
-import type { Lesson, Locale } from "../types";
+import { parse } from "yaml";
+import type { Lesson, LessonResource, Locale } from "../types";
 
 const files = import.meta.glob<string>("../content/learning/**/*.md", { eager: true, query: "?raw", import: "default" });
-
-function parseList(value: string): string[] {
-  return value.replaceAll("[", "").replaceAll("]", "").split(",").map((item) => item.trim()).filter(Boolean);
-}
 
 function parseLesson(raw: string): Lesson {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) throw new Error("Invalid lesson front matter");
-  const values = Object.fromEntries(match[1].split("\n").map((line) => {
-    const separator = line.indexOf(":");
-    return [line.slice(0, separator).trim(), line.slice(separator + 1).trim().replace(/^['"]|['"]$/g, "")];
-  }));
+  const values = parse(match[1]) as Record<string, unknown>;
+  const resources = values.resources as LessonResource[] | undefined;
+  if (!Array.isArray(resources)) throw new Error(`Lesson ${values.id}: resources must be a list`);
   return {
-    id: values.id,
+    id: String(values.id),
     module: Number(values.module),
     order: Number(values.order),
-    title: values.title,
-    duration: values.duration,
-    prerequisites: parseList(values.prerequisites),
-    objectives: parseList(values.objectives),
+    title: String(values.title),
+    duration: String(values.duration),
+    prerequisites: values.prerequisites as string[],
+    objectives: values.objectives as string[],
     translationStatus: values.translation_status as Lesson["translationStatus"],
     visibility: "learning",
+    resources,
     body: match[2],
   };
 }

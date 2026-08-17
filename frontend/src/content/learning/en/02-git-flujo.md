@@ -8,19 +8,24 @@ prerequisites: [Cloned repository, Git]
 objectives: [Use a pull request workflow, Separate small changes]
 translation_status: published
 visibility: learning
+resources: [{ type: official_docs, title: "GitHub Docs - About pull requests", description: "Learn the review and integration contract.", url: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests, provider: "GitHub" }, { type: video, title: "Git and GitHub for beginners", description: "A visual review of branches, commits, and pull requests.", url: https://www.youtube.com/watch?v=RGOj5yH7evk, provider: "freeCodeCamp" }]
 ---
-# The repository is the contract
-
-In development, a commit records a decision that can be tested, reviewed, and deployed. Use short-lived branches and make each pull request a verifiable unit.
-
+# Learn by building
+Each module connects a technical decision to a concrete outcome in the AI Playground.
+## Key concepts
+- **Boundary:** the place where a responsibility is owned.
+- **Contract:** the expected shape of a collaboration.
+## Step by step
+1. Identify the user-facing outcome.
+2. Put one responsibility in each layer.
+3. Verify the result before moving on.
+## Practical example
+Apply the module decision to the playground and keep the implementation small, explicit, and testable.
 ## Exercise
-
-Propose three commits to add a profile screen: API contract, interface, and test.
-
+Write the decision you would make for this module and the evidence that proves it works.
 ## Check
-
-Every commit can be described in one sentence and does not mix refactoring with a new feature.
-
+You can explain the boundary, its contract, and the failure it prevents.
 ## Common mistake
-
-Saving an afternoon of work in one unreviewable commit.
+Changing several responsibilities at once and losing a clear source of truth.
+## Next step
+Use this decision as the input to the next module.

@@ -8,19 +8,24 @@ prerequisites: [Basic Python, HTTP]
 objectives: [Design endpoints, Validate input with Pydantic]
 translation_status: published
 visibility: learning
+resources: [{ type: official_docs, title: "FastAPI Tutorial - Request Body", description: "Define and validate input contracts with Pydantic.", url: https://fastapi.tiangolo.com/tutorial/body/, provider: "FastAPI" }, { type: video, title: "FastAPI Course", description: "A practical introduction to routes and validation.", url: https://www.youtube.com/watch?v=7t2alSnE2-I, provider: "freeCodeCamp" }]
 ---
-# An endpoint is not the domain
-
-An endpoint receives HTTP, validates the contract, calls a service, and returns a response. Business logic must not grow inside the route function: this keeps it testable without a server.
-
+# Learn by building
+Each module connects a technical decision to a concrete outcome in the AI Playground.
+## Key concepts
+- **Boundary:** the place where a responsibility is owned.
+- **Contract:** the expected shape of a collaboration.
+## Step by step
+1. Identify the user-facing outcome.
+2. Put one responsibility in each layer.
+3. Verify the result before moving on.
+## Practical example
+Apply the module decision to the playground and keep the implementation small, explicit, and testable.
 ## Exercise
-
-Design `PUT /api/profile`: locale input, current user, profile service, and validated response.
-
+Write the decision you would make for this module and the evidence that proves it works.
 ## Check
-
-Explain what happens when an invalid locale arrives and why the database is not called.
-
+You can explain the boundary, its contract, and the failure it prevents.
 ## Common mistake
-
-Mixing SQL, authorization, and HTTP serialization in a long endpoint.
+Changing several responsibilities at once and losing a clear source of truth.
+## Next step
+Use this decision as the input to the next module.

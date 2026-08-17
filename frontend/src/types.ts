@@ -1,5 +1,14 @@
 export type Locale = "es" | "en";
 export type Role = "editor" | "student";
+export type LessonResourceType = "official_docs" | "video";
+
+export interface LessonResource {
+  type: LessonResourceType;
+  title: string;
+  description: string;
+  url: string;
+  provider: string;
+}
 
 export interface Lesson {
   id: string;
@@ -11,6 +20,7 @@ export interface Lesson {
   objectives: string[];
   translationStatus: "published" | "draft";
   visibility: "learning";
+  resources: LessonResource[];
   body: string;
 }
 

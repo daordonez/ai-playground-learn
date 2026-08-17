@@ -8,19 +8,24 @@ prerequisites: [FastAPI, Relational data]
 objectives: [Model progress, Protect data with a volume]
 translation_status: published
 visibility: learning
+resources: [{ type: official_docs, title: "SQLite Documentation", description: "Primary reference for SQLite SQL and transactions.", url: https://www.sqlite.org/docs.html, provider: "SQLite" }, { type: video, title: "SQLite in 100 Seconds", description: "A recap of the embedded database and its use cases.", url: https://www.youtube.com/watch?v=f5e8F9QFz8Y, provider: "Fireship" }]
 ---
-# Small data, serious design
-
-SQLite fits a few users and one instance. The database file belongs in a volume, never only in the ephemeral container layer. Design tables with a future migration in mind.
-
+# Learn by building
+Each module connects a technical decision to a concrete outcome in the AI Playground.
+## Key concepts
+- **Boundary:** the place where a responsibility is owned.
+- **Contract:** the expected shape of a collaboration.
+## Step by step
+1. Identify the user-facing outcome.
+2. Put one responsibility in each layer.
+3. Verify the result before moving on.
+## Practical example
+Apply the module decision to the playground and keep the implementation small, explicit, and testable.
 ## Exercise
-
-Relate a lesson to its completion state and explain which key prevents duplicates.
-
+Write the decision you would make for this module and the evidence that proves it works.
 ## Check
-
-Restart a container without losing progress because you know the mounted directory.
-
+You can explain the boundary, its contract, and the failure it prevents.
 ## Common mistake
-
-Keeping the `.db` file inside the container image.
+Changing several responsibilities at once and losing a clear source of truth.
+## Next step
+Use this decision as the input to the next module.

@@ -8,19 +8,24 @@ prerequisites: [Docker]
 objectives: [Create a reproducible image, Add health checks]
 translation_status: published
 visibility: learning
+resources: [{ type: official_docs, title: "Docker Compose", description: "Official reference for multi-container applications.", url: https://docs.docker.com/compose/, provider: "Docker" }, { type: video, title: "Docker in 100 Seconds", description: "A recap of images, containers, and isolation.", url: https://www.youtube.com/watch?v=Gjnup-PuquQ, provider: "Fireship" }]
 ---
-# Package the whole application
-
-A multi-stage image compiles React and hands its files to FastAPI. Configuration comes from environment variables, state from a volume, and availability from a health endpoint.
-
+# Learn by building
+Each module connects a technical decision to a concrete outcome in the AI Playground.
+## Key concepts
+- **Boundary:** the place where a responsibility is owned.
+- **Contract:** the expected shape of a collaboration.
+## Step by step
+1. Identify the user-facing outcome.
+2. Put one responsibility in each layer.
+3. Verify the result before moving on.
+## Practical example
+Apply the module decision to the playground and keep the implementation small, explicit, and testable.
 ## Exercise
-
-List what belongs in the image, a volume, and an environment variable.
-
+Write the decision you would make for this module and the evidence that proves it works.
 ## Check
-
-The same artifact runs locally and in Dokploy with different values.
-
+You can explain the boundary, its contract, and the failure it prevents.
 ## Common mistake
-
-Building different images for development and production.
+Changing several responsibilities at once and losing a clear source of truth.
+## Next step
+Use this decision as the input to the next module.

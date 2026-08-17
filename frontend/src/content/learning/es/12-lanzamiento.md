@@ -3,24 +3,41 @@ id: lanzamiento
 module: 12
 order: 12
 title: Lanzamiento y operación del MVP
-duration: 40 min
-prerequisites: [Dokploy, CI/CD]
-objectives: [Definir aceptación, Preparar operación]
+duration: 55 min
+prerequisites: [CI/CD, Despliegue]
+objectives: [Definir señales, Operar una primera versión]
 translation_status: published
 visibility: learning
+resources: [{ type: official_docs, title: Google SRE Workbook, description: Selecciona señales y prácticas operativas para un servicio real., url: https://sre.google/workbook/monitoring/, provider: Google SRE }, { type: video, title: SRE explained, description: Relaciona fiabilidad, usuario y operación continua., url: https://www.youtube.com/watch?v=uTEL8Ff1Zvk, provider: Google Cloud Tech }]
 ---
-# El MVP no es el final
+# Entregable: Un playground desplegado con un checklist de aceptación, señales operativas y un rollback probado.
+Este módulo acerca el repositorio a un único objetivo: un cliente de AI Playground que conversa con un modelo de Azure AI Foundry a través de FastAPI.
 
-Lanzar significa validar que la ruta funciona, que el progreso sobrevive y que existe un camino de recuperación. El backlog posterior puede activar OIDC, múltiples usuarios, Azure Foundry real y PostgreSQL cuando la carga lo justifique.
+## Conceptos clave
+- **Artefacto verificable:** cambio que puedes abrir, ejecutar o revisar.
+- **Límite de seguridad:** el navegador no posee secretos ni decide el proveedor de IA.
+
+## Paso a paso
+1. Prueba una conversación real desde el navegador sin abrir DevTools a secretos.
+2. Observa tasa de error, latencia del endpoint y consumo de tokens en el backend.
+3. Documenta el cambio de etiqueta SHA necesario para volver a la versión anterior.
+
+## Ejemplo práctico
+```text
+Aceptación: enviar un mensaje devuelve texto o un error útil; la API registra correlación, latencia y modelo sin registrar credenciales.
+```
+Un lanzamiento correcto no es solo HTTP 200. Debe ser útil para el usuario, observable para operaciones y reversible para el equipo.
 
 ## Ejercicio
-
-Escribe un runbook de cinco pasos para investigar que la aplicación no responde.
+Implementa el entregable, arranca frontend y backend, y anota la evidencia: captura, prueba automatizada o respuesta HTTP que demuestra el comportamiento.
 
 ## Verificación
-
-Puedes distinguir un fallo de aplicación, volumen, red, registro o proveedor externo.
+- El flujo funciona desde la interfaz, no solo desde una consola.
+- El backend conserva la responsabilidad de secretos, políticas y proveedor.
+- Puedes describir el siguiente cambio sin romper el contrato actual.
 
 ## Error frecuente
+Saltar al SDK de Azure desde React o mezclar el entregable actual con mejoras no necesarias para validar el flujo.
 
-Declarar terminado el MVP sin backup, health check ni versión desplegada identificable.
+## Siguiente paso
+Confirma el entregable con un commit y usa su resultado como punto de partida del módulo siguiente.

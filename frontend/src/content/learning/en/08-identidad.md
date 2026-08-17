@@ -8,19 +8,24 @@ prerequisites: [JWT, HTTP]
 objectives: [Separate identity and permissions, Prepare interchangeable roles]
 translation_status: published
 visibility: learning
+resources: [{ type: official_docs, title: "Keycloak Guides", description: "Configure OIDC identity and clients from primary documentation.", url: https://www.keycloak.org/guides, provider: "Keycloak" }, { type: video, title: "OAuth 2.0 and OpenID Connect", description: "Separate authentication, authorization, and tokens.", url: https://www.youtube.com/watch?v=996OiexHze0, provider: "Okta" }]
 ---
-# Identity is not authorization
-
-OIDC answers who the person is; your domain decides what they can do. The backend turns provider claims into an internal user with `student` or `editor` roles without knowing Keycloak details.
-
+# Learn by building
+Each module connects a technical decision to a concrete outcome in the AI Playground.
+## Key concepts
+- **Boundary:** the place where a responsibility is owned.
+- **Contract:** the expected shape of a collaboration.
+## Step by step
+1. Identify the user-facing outcome.
+2. Put one responsibility in each layer.
+3. Verify the result before moving on.
+## Practical example
+Apply the module decision to the playground and keep the implementation small, explicit, and testable.
 ## Exercise
-
-Choose which screen should be hidden from a student and where that rule belongs.
-
+Write the decision you would make for this module and the evidence that proves it works.
 ## Check
-
-You can replace Keycloak with Entra ID without rewriting lesson services.
-
+You can explain the boundary, its contract, and the failure it prevents.
 ## Common mistake
-
-Checking roles only in React and treating that as API protection.
+Changing several responsibilities at once and losing a clear source of truth.
+## Next step
+Use this decision as the input to the next module.

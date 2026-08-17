@@ -4,7 +4,7 @@ Plataforma bilingüe para aprender, paso a paso, a construir un AI Playground co
 
 ## Qué incluye
 
-- 12 lecciones docentes en español e inglés, versionadas en Markdown.
+- 12 lecciones docentes en español e inglés, versionadas en Markdown con recursos de documentación oficial y vídeo curado.
 - Guiones y sugerencias audiovisuales en español para TikTok y YouTube, visibles en modo editor.
 - Progreso persistente en SQLite y preferencia de idioma.
 - API FastAPI y SPA React en una sola imagen de contenedor.
@@ -48,7 +48,7 @@ docker compose up --build
 
 ## Traducciones
 
-El contenido de aprendizaje se mantiene en `frontend/src/content/learning/es` y `frontend/src/content/learning/en`. La traducción se genera y revisa antes del merge. Los materiales en `frontend/src/content/editorial` son siempre españoles y no se traducen.
+El contenido de aprendizaje se mantiene en `frontend/src/content/learning/es` y `frontend/src/content/learning/en`. Cada fichero Markdown contiene los metadatos, el cuerpo de la lección y sus recursos externos; se incorpora al bundle del frontend durante la compilación. SQLite guarda exclusivamente progreso y preferencias de usuario, nunca lecciones ni enlaces. La traducción se genera y revisa antes del merge. Los materiales en `frontend/src/content/editorial` son siempre españoles y no se traducen.
 
 Para generar un borrador inglés con Azure AI Translator, exporta `AZURE_TRANSLATOR_KEY` y, si aplica, `AZURE_TRANSLATOR_REGION`. Después ejecuta:
 

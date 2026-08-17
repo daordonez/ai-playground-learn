@@ -8,19 +8,24 @@ prerequisites: [FastAPI, Secrets]
 objectives: [Abstract providers, Design SSE streaming]
 translation_status: published
 visibility: learning
+resources: [{ type: official_docs, title: "Microsoft Learn - Azure AI Foundry", description: "Architecture and model usage in Azure AI Foundry.", url: https://learn.microsoft.com/azure/ai-foundry/, provider: "Microsoft Learn" }, { type: video, title: "Azure AI Foundry overview", description: "Visual context for Foundry components.", url: https://www.youtube.com/watch?v=vRZFQj5O3Yc, provider: "Microsoft Azure" }]
 ---
-# The backend selects the model
-
-The playground must not couple its UI to one provider. FastAPI receives a chat intent, selects an allowed configuration, and streams the result. SSE is enough for an MVP without WebSockets.
-
+# Learn by building
+Each module connects a technical decision to a concrete outcome in the AI Playground.
+## Key concepts
+- **Boundary:** the place where a responsibility is owned.
+- **Contract:** the expected shape of a collaboration.
+## Step by step
+1. Identify the user-facing outcome.
+2. Put one responsibility in each layer.
+3. Verify the result before moving on.
+## Practical example
+Apply the module decision to the playground and keep the implementation small, explicit, and testable.
 ## Exercise
-
-Define response metadata: model, latency, token usage, and outcome.
-
+Write the decision you would make for this module and the evidence that proves it works.
 ## Check
-
-Identify where the Azure credential lives and why it never appears in JavaScript.
-
+You can explain the boundary, its contract, and the failure it prevents.
 ## Common mistake
-
-Exposing an API key so the browser can call a provider directly.
+Changing several responsibilities at once and losing a clear source of truth.
+## Next step
+Use this decision as the input to the next module.
